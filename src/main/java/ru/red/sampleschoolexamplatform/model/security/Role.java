@@ -1,4 +1,4 @@
-package ru.red.sampleschoolexamplatform.model;
+package ru.red.sampleschoolexamplatform.model.security;
 
 import lombok.Data;
 

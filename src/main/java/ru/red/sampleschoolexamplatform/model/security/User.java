@@ -1,7 +1,6 @@
-package ru.red.sampleschoolexamplatform.model;
+package ru.red.sampleschoolexamplatform.model.security;
 
 import lombok.Data;
-import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,13 +18,13 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NaturalId
+    @Column(unique = true)
     private String username;
 
     private String password;
 
     // Keep in mind that if we're using LAZY fetch we're forced to fetch roles by request
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "role", referencedColumnName = "role"))
     private Set<Role> roles;

@@ -1,6 +1,6 @@
-package ru.red.sampleschoolexamplatform.model.dto;
+package ru.red.sampleschoolexamplatform.model.security.dto;
 
-import ru.red.sampleschoolexamplatform.model.Authority;
+import ru.red.sampleschoolexamplatform.model.security.Authority;
 
 public record AuthorityDto(String authority) {
     public Authority toAuthority() {

@@ -3,8 +3,8 @@ package ru.red.sampleschoolexamplatform.controller.rest;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.red.sampleschoolexamplatform.model.Role;
-import ru.red.sampleschoolexamplatform.model.dto.RoleDto;
+import ru.red.sampleschoolexamplatform.model.security.Role;
+import ru.red.sampleschoolexamplatform.model.security.dto.RoleDto;
 import ru.red.sampleschoolexamplatform.service.RoleService;
 
 import java.util.Set;
@@ -26,13 +26,13 @@ public class RolesRestController {
     }
 
     @DeleteMapping
-    public Role deleteRole(@RequestBody RoleDto roleDto) {
-        return roleService.deleteRole(roleDto.toRole());
+    public void deleteRole(@RequestBody RoleDto roleDto) {
+        roleService.deleteRole(roleDto.toRole());
     }
 
     @PostMapping
-    public Role addRole(@RequestBody RoleDto roleDto) {
-        return roleService.addRole(roleDto.toRole());
+    public void addRole(@RequestBody RoleDto roleDto) {
+        roleService.addRole(roleDto.toRole());
     }
 
     @GetMapping("/{role}")

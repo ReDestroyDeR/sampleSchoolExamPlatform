@@ -3,10 +3,8 @@ package ru.red.sampleschoolexamplatform.controller.rest;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.red.sampleschoolexamplatform.model.User;
-import ru.red.sampleschoolexamplatform.model.dto.RoleDto;
-import ru.red.sampleschoolexamplatform.model.dto.UserDto;
-import ru.red.sampleschoolexamplatform.service.RoleService;
+import ru.red.sampleschoolexamplatform.model.security.User;
+import ru.red.sampleschoolexamplatform.model.security.dto.UserDto;
 import ru.red.sampleschoolexamplatform.service.UserService;
 
 import java.util.Set;
@@ -28,13 +26,13 @@ public class UsersRestController {
     }
 
     @DeleteMapping
-    public User deleteUser(@RequestBody UserDto userDto) {
-        return userService.deleteUser(userDto.toUser());
+    public void deleteUser(@RequestBody UserDto userDto) {
+        userService.deleteUser(userDto.toUser());
     }
 
     @PostMapping
-    public User addUser(@RequestBody UserDto userDto) {
-        return userService.addUser(userDto.toUser());
+    public void addUser(@RequestBody UserDto userDto) {
+        userService.addUser(userDto.toUser());
     }
 
     @GetMapping("/{user}")

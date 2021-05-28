@@ -3,9 +3,10 @@ package ru.red.sampleschoolexamplatform.service;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.red.sampleschoolexamplatform.dao.UserDao;
-import ru.red.sampleschoolexamplatform.model.User;
+import ru.red.sampleschoolexamplatform.model.security.User;
 
 import java.util.Set;
 
@@ -13,10 +14,12 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -26,17 +29,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
+        // New password situation
+        if (!passwordEncoder.matches(user.getPassword(),
+                                     findUser(user.getId()).getPassword()))
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         return userDao.updateUser(user);
     }
 
     @Override
-    public User deleteUser(User user) {
-        return userDao.deleteUser(user);
+    public void deleteUser(User user) {
+        userDao.deleteUser(user);
     }
 
     @Override
-    public User addUser(User user) {
-        return userDao.addUser(user);
+    public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userDao.addUser(user);
     }
 
     @Override

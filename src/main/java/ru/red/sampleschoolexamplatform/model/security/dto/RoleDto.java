@@ -1,6 +1,6 @@
-package ru.red.sampleschoolexamplatform.model.dto;
+package ru.red.sampleschoolexamplatform.model.security.dto;
 
-import ru.red.sampleschoolexamplatform.model.Role;
+import ru.red.sampleschoolexamplatform.model.security.Role;
 
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -2,10 +2,9 @@ package ru.red.sampleschoolexamplatform.service;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.red.sampleschoolexamplatform.dao.RoleDao;
-import ru.red.sampleschoolexamplatform.model.Role;
+import ru.red.sampleschoolexamplatform.model.security.Role;
 
 import java.util.Set;
 
@@ -26,13 +25,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role deleteRole(Role role) {
-        return roleDao.deleteRole(role);
+    public void deleteRole(Role role) {
+        roleDao.deleteRole(role);
     }
 
     @Override
-    public Role addRole(Role role) {
-        return roleDao.addRole(role);
+    public void addRole(Role role) {
+         roleDao.addRole(role);
     }
 
     @Override

@@ -1,17 +1,16 @@
 package ru.red.sampleschoolexamplatform.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.red.sampleschoolexamplatform.model.User;
+import ru.red.sampleschoolexamplatform.model.security.User;
 
 import java.util.Set;
 
 public interface UserService extends UserDetailsService {
     User updateUser(User user);
 
-    User deleteUser(User user);
+    void deleteUser(User user);
 
-    User addUser(User user);
+    void addUser(User user);
 
     User findUser(Long id);
 
