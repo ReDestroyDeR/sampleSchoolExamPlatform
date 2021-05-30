@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.red</groupId>
     <artifactId>sampleSchoolExamingPlatform</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>sampleSchoolExamPlatform</name>
     <description>Spring Boot</description>

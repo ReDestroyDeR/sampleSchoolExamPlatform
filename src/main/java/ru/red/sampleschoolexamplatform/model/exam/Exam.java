@@ -10,6 +10,12 @@ import java.util.List;
 @Entity
 @Table(name = "exam")
 @NoArgsConstructor
+@NamedEntityGraph(
+        name = "exam-with-questions",
+        attributeNodes = {
+                @NamedAttributeNode(value = "questions")
+        }
+)
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

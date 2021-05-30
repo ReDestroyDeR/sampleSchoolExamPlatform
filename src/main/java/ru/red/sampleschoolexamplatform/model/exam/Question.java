@@ -12,6 +12,12 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@NamedEntityGraph(
+        name = "question-with-answers",
+        attributeNodes = {
+                @NamedAttributeNode("answers")
+        }
+)
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

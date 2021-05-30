@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.red.sampleschoolexamplatform.dao.exam.ExamDao;
 import ru.red.sampleschoolexamplatform.model.exam.Exam;
 
+import java.util.List;
+
 @Service
 public class ExamServiceImpl implements ExamService {
     private final ExamDao examDao;
@@ -17,16 +19,21 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public Exam findExam(Long id) {
-        return examDao.findById(id).orElse(null);
+        return examDao.findById(id).orElseThrow();
     }
 
     @Override
-    public Exam loadExam(Long id) {
-        return examDao.findFirstWithQuestionsAndAnswersById(id).orElse(null);
+    public Exam getExam(Long id) {
+        return examDao.getById(id);
     }
 
     @Override
     public Exam saveExam(Exam exam) {
         return examDao.save(exam);
+    }
+
+    @Override
+    public List<Exam> getAllExams() {
+        return examDao.findAll();
     }
 }
