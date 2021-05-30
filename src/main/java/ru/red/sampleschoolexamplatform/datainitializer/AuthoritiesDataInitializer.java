@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 import ru.red.sampleschoolexamplatform.service.security.AuthorityService;
 
 import java.util.Arrays;
+import java.util.logging.Level;
 
 @Log
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ public class AuthoritiesDataInitializer {
     };
 
     public void initAuthorities() {
+        log.log(Level.INFO, "Initializing authorities");
         Arrays.stream(authorities).forEach(authorityService::addAuthority);
     }
 }

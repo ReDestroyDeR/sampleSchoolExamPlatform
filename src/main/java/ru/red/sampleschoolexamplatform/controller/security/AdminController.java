@@ -1,10 +1,10 @@
-package ru.red.sampleschoolexamplatform.controller;
+package ru.red.sampleschoolexamplatform.controller.security;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/cabinet")
-public class UserController {
+@RequestMapping("/admin")
+public class AdminController {
 
 }

@@ -16,15 +16,10 @@ import java.util.stream.Collectors;
 @NamedEntityGraph(
         name = "user-with-roles",
         attributeNodes = {
-                @NamedAttributeNode(value = "roles", subgraph = "authorities")
-        },
-        subgraphs = @NamedSubgraph(
-                name = "authorities",
-                attributeNodes = @NamedAttributeNode("authorities")
-        )
+                @NamedAttributeNode(value = "roles")
+        }
 )
-public class User implements UserDetails {
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,9 +39,4 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-
-    @Override
-    public List<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().flatMap(r -> r.getAuthorities().stream()).collect(Collectors.toList());
-    }
 }

@@ -2,7 +2,6 @@ package ru.red.sampleschoolexamplatform.service.security;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.red.sampleschoolexamplatform.dao.security.UserDao;
@@ -15,23 +14,20 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDao userDao, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDao.findByUsername(username).orElse(null);
     }
 
     @Override
     public User updateUser(User user) {
         // New password situation
         if (!passwordEncoder.matches(user.getPassword(),
-                                     findUser(user.getId()).getPassword()))
+                                     findUserById(user.getId()).getPassword()))
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return userDao.save(user);
@@ -49,8 +45,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUser(Long id) {
-        return userDao.getById(id);
+    public User findUserById(Long id) {
+        return userDao.findById(id).orElseThrow();
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userDao.findByUsername(username).orElseThrow();
     }
 
     @Override

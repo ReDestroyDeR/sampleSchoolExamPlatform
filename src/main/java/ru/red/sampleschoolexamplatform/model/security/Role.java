@@ -13,7 +13,7 @@ public class Role {
     @Column(name = "role")
     private String role;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "role_authorities",
                joinColumns = @JoinColumn(name = "role", referencedColumnName = "role"),
                inverseJoinColumns = @JoinColumn(name = "authority", referencedColumnName = "authority"))

@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findRole(String role) {
-        return roleDao.findById(role).orElse(null);
+        return roleDao.findByRole(role).orElse(null);
     }
 
     @Override

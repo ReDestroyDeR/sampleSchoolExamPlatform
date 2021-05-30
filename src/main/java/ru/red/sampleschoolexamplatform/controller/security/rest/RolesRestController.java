@@ -1,4 +1,4 @@
-package ru.red.sampleschoolexamplatform.controller.rest;
+package ru.red.sampleschoolexamplatform.controller.security.rest;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;

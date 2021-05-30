@@ -5,14 +5,16 @@ import ru.red.sampleschoolexamplatform.model.security.User;
 
 import java.util.List;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
     User updateUser(User user);
 
     void deleteUser(User user);
 
     void addUser(User user);
 
-    User findUser(Long id);
-
     List<User> getAllUsers();
+
+    User findUserById(Long id);
+
+    User findUserByUsername(String user);
 }
