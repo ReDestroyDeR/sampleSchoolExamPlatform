@@ -1,4 +1,4 @@
-package ru.red.sampleschoolexamplatform.model.security.dto;
+package ru.red.sampleschoolexamplatform.dto.security;
 
 import ru.red.sampleschoolexamplatform.model.security.Authority;
 

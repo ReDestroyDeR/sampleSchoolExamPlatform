@@ -1,4 +1,4 @@
-package ru.red.sampleschoolexamplatform.model.exam.dto;
+package ru.red.sampleschoolexamplatform.dto.exam;
 
 public record ExamDto(Long id, String title, QuestionDto[] questions) {
 }

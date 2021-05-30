@@ -4,11 +4,10 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.red.sampleschoolexamplatform.model.security.User;
-import ru.red.sampleschoolexamplatform.model.security.dto.UserDto;
+import ru.red.sampleschoolexamplatform.dto.security.UserDto;
 import ru.red.sampleschoolexamplatform.service.security.UserService;
 
 import java.util.List;
-import java.util.Set;
 
 @Log
 @RestController
