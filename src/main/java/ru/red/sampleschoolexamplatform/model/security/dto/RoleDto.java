@@ -12,7 +12,7 @@ public record RoleDto(String role, Set<AuthorityDto> authorityDtoSet) {
         // Same trick as in UserDto
         role.setAuthorities(authorityDtoSet.stream()
                                            .map(AuthorityDto::toAuthority)
-                                           .collect(Collectors.toSet()));
+                                           .collect(Collectors.toList()));
         return role;
     }
 }

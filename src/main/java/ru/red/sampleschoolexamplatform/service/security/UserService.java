@@ -1,9 +1,9 @@
-package ru.red.sampleschoolexamplatform.service;
+package ru.red.sampleschoolexamplatform.service.security;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.red.sampleschoolexamplatform.model.security.User;
 
-import java.util.Set;
+import java.util.List;
 
 public interface UserService extends UserDetailsService {
     User updateUser(User user);
@@ -14,5 +14,5 @@ public interface UserService extends UserDetailsService {
 
     User findUser(Long id);
 
-    Set<User> getAllUsers();
+    List<User> getAllUsers();
 }

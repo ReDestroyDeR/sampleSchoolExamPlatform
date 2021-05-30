@@ -1,17 +1,15 @@
-package ru.red.sampleschoolexamplatform.service;
+package ru.red.sampleschoolexamplatform.service.security;
 
 import ru.red.sampleschoolexamplatform.model.security.Role;
 
-import java.util.Set;
+import java.util.List;
 
 public interface RoleService {
-    Role updateRole(Role role);
-
     void deleteRole(Role role);
 
-    void addRole(Role role);
+    Role saveRole(Role role);
 
     Role findRole(String role);
 
-    Set<Role> getAllRoles();
+    List<Role> findAllRoles();
 }

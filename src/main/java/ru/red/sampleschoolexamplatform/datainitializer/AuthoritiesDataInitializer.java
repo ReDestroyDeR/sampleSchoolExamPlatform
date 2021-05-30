@@ -2,7 +2,7 @@ package ru.red.sampleschoolexamplatform.datainitializer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import ru.red.sampleschoolexamplatform.service.AuthorityService;
+import ru.red.sampleschoolexamplatform.service.security.AuthorityService;
 
 import java.util.Arrays;
 

@@ -1,12 +1,12 @@
-package ru.red.sampleschoolexamplatform.service;
+package ru.red.sampleschoolexamplatform.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
-import ru.red.sampleschoolexamplatform.dao.AuthorityDao;
+import ru.red.sampleschoolexamplatform.dao.security.AuthorityDao;
 import ru.red.sampleschoolexamplatform.model.security.Authority;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class AuthorityServiceImpl implements AuthorityService {
@@ -20,11 +20,11 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     @Secured("")
     public void addAuthority(String authority) {
-        authorityDao.addAuthority(new Authority(authority));
+        authorityDao.save(new Authority(authority));
     }
 
     @Override
-    public Set<Authority> getAuthorities() {
-        return authorityDao.getAuthorities();
+    public List<Authority> getAuthorities() {
+        return authorityDao.findAll();
     }
 }

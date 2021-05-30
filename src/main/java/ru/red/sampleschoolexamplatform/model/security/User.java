@@ -6,12 +6,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
 @Entity
 @Table(name = "user")
+@NamedEntityGraph(
+        name = "user-with-roles",
+        attributeNodes = {
+                @NamedAttributeNode(value = "roles", subgraph = "authorities")
+        },
+        subgraphs = @NamedSubgraph(
+                name = "authorities",
+                attributeNodes = @NamedAttributeNode("authorities")
+        )
+)
 public class User implements UserDetails {
 
     @Id
@@ -24,10 +35,10 @@ public class User implements UserDetails {
     private String password;
 
     // Keep in mind that if we're using LAZY fetch we're forced to fetch roles by request
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(joinColumns = @JoinColumn(name="id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "role", referencedColumnName = "role"))
-    private Set<Role> roles;
+    private List<Role> roles;
 
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -35,7 +46,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().flatMap(r -> r.getAuthorities().stream()).collect(Collectors.toSet());
+    public List<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream().flatMap(r -> r.getAuthorities().stream()).collect(Collectors.toList());
     }
 }

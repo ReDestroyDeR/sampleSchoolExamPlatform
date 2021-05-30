@@ -1,12 +1,12 @@
-package ru.red.sampleschoolexamplatform.service;
+package ru.red.sampleschoolexamplatform.service.security;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.red.sampleschoolexamplatform.dao.RoleDao;
+import ru.red.sampleschoolexamplatform.dao.security.RoleDao;
 import ru.red.sampleschoolexamplatform.model.security.Role;
 
-import java.util.Set;
+import java.util.List;
 
 @Log
 @Service
@@ -20,27 +20,22 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role updateRole(Role role) {
-        return roleDao.updateRole(role);
-    }
-
-    @Override
     public void deleteRole(Role role) {
-        roleDao.deleteRole(role);
+        roleDao.delete(role);
     }
 
     @Override
-    public void addRole(Role role) {
-         roleDao.addRole(role);
+    public Role saveRole(Role role) {
+         return roleDao.save(role);
     }
 
     @Override
     public Role findRole(String role) {
-        return roleDao.findRole(role);
+        return roleDao.findById(role).orElse(null);
     }
 
     @Override
-    public Set<Role> getAllRoles() {
-        return roleDao.getAllRoles();
+    public List<Role> findAllRoles() {
+        return roleDao.findAll();
     }
 }

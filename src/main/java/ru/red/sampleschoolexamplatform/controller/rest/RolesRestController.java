@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.red.sampleschoolexamplatform.model.security.Role;
 import ru.red.sampleschoolexamplatform.model.security.dto.RoleDto;
-import ru.red.sampleschoolexamplatform.service.RoleService;
+import ru.red.sampleschoolexamplatform.service.security.RoleService;
 
+import java.util.List;
 import java.util.Set;
 
 @Log
@@ -22,7 +23,7 @@ public class RolesRestController {
 
     @PutMapping
     public Role updateRole(@RequestBody RoleDto roleDto) {
-        return roleService.updateRole(roleDto.toRole());
+        return roleService.saveRole(roleDto.toRole());
     }
 
     @DeleteMapping
@@ -32,7 +33,7 @@ public class RolesRestController {
 
     @PostMapping
     public void addRole(@RequestBody RoleDto roleDto) {
-        roleService.addRole(roleDto.toRole());
+        roleService.saveRole(roleDto.toRole());
     }
 
     @GetMapping("/{role}")
@@ -41,7 +42,7 @@ public class RolesRestController {
     }
 
     @GetMapping
-    public Set<Role> getAllRoles() {
-        return roleService.getAllRoles();
+    public List<Role> getAllRoles() {
+        return roleService.findAllRoles();
     }
 }

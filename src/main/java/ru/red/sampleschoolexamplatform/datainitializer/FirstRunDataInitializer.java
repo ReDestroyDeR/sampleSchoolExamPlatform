@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.red.sampleschoolexamplatform.model.security.Role;
 import ru.red.sampleschoolexamplatform.model.security.User;
-import ru.red.sampleschoolexamplatform.service.AuthorityService;
-import ru.red.sampleschoolexamplatform.service.RoleService;
-import ru.red.sampleschoolexamplatform.service.UserService;
+import ru.red.sampleschoolexamplatform.service.security.AuthorityService;
+import ru.red.sampleschoolexamplatform.service.security.RoleService;
+import ru.red.sampleschoolexamplatform.service.security.UserService;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,11 +42,11 @@ public class FirstRunDataInitializer {
                 rootRole = new Role();
                 rootRole.setRole("ROOT");
                 rootRole.setAuthorities(authorityService.getAuthorities());
-                roleService.addRole(rootRole);
+                roleService.saveRole(rootRole);
             }
 
 
-            Set<Role> roles = new HashSet<>();
+            List<Role> roles = new ArrayList<>();
             roles.add(rootRole);
             root.setRoles(roles);
 
